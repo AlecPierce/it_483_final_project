@@ -1,0 +1,21 @@
+.flex-container {
+  display: flex;
+/*    flex-direction: row;*/
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-container > div {
+  background-color: buttonface;
+  width: 25%;
+  height: 75%;
+  margin: 10px;
+  text-align: center;
+  line-height: 75%;
+  font-size: 30px;
+  padding: 10%;
+}
+
+form {
+  padding: 5%;
+}

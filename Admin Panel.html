@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Panel</title>
+	<link rel="stylesheet" type="text/css" href="adminPanel.css">
+    <!--<link rel="stylesheet" type="text/css" href="bootstrap.css">-->
+</head>
+<body>
+	<div class="flex-container">
+		<div>
+			<form action="insert_faculty.php" method="post">
+				<div>
+					<label>Faculty Name</label>
+					<input type="text" name="new_faculty_name">
+				</div>
+				<div>
+					<label>Faculty ID</label>
+					<input type="text" name="new_faculty_id">
+				</div>
+				<div>
+					<label>Email</label>
+					<input type="text" name="new_faculty_id">
+				</div>
+				<div>
+					<label>Degree</label>
+					<input type="text" name="new_faculty_degree">
+				</div>
+				<div>
+					<label>Interest</label>
+					<input type="text" name="new_faculty_interest">
+				</div>
+				<div>
+					<label>Office Location (Building)</label>
+					<input type="text" name="new_faculty_off_building">
+				</div>
+				<div>
+					<label>Office Location (Number)</label>
+					<input type="text" name="new_faculty_off_number">
+				</div>
+				<div>
+					<label>Phone Number</label>
+					<input type="text" name="new_faculty_phone">
+				</div>
+				<div>
+					<label>Title</label>
+					<input type="text" name="new_faculty_title">
+				</div>
+				<div>
+					<label>Other Information</label>
+					<input type="text" name="new_faculty_desc">
+				</div>
+				<div>
+					<button type="Submit">Submit</button>
+				</div>
+			</form>
+		</div>
+
+		<div>
+			<form action="insert_image.php" method="post">
+				<label>Image</label>
+				<input type="Image" name="Image">
+				<button type="Submit">Submit</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
