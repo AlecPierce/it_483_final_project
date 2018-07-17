@@ -5,42 +5,34 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="main.css">
         <link rel="stylesheet" type="text/css" href="bootstrap.css">
+        <link rel="shortcut icon" href="#"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
-        <div id="top-half">
-            <div id="divUponEnter" hidden="false">
+        <div id="top-half" class="course">
+            <div id="top-half-div">
                 <span>Please select a course to learn more</span>
             </div>
         </div>
-        <div id="NavHistory">
-            <!-- This is where the home and possibly hierarchy history if there is any -->
-            <a href="index.html">
-                <button>Home</button>
-            </a>
-        </div>
         <div id="bottom-half">
-            <div id="courseLinks" class="flex-container">
-                <!--<div>
-                    <a href="Selected Course.html">Course 1</a>
-                </div>
-                <div>
-                    <a href="Selected Course.html">Course 2</a>
-                </div>
-                <div>
-                    <a href="Selected Course.html">Course 5</a>
-                </div>-->
+            <div id="NavHistory">
+                <!-- This is where the home and possibly hierarchy history if there is any -->
+                <a href="index.html">
+                    <button>Home</button>
+                </a>
+            </div>
+            <div id="courseLinks" class="flex-container courseLink">
                 <!-- Courses go here -->
             </div>
             <div class="flex-container">
                     <div>
-                        <a href="Faculty.html">Faculty</a>
+                        <a id='facultyButton'href="Faculty.html">Faculty</a>
                     </div>
                     <div>
-                        <a href="Courses.html">Courses</a>
+                        <a id='coursesButton' href="Courses.html">Courses</a>
                     </div>
                     <div>
-                        <a href="News.html">News</a>
+                        <a id='newsButton' href="News.html">News</a>
                     </div>
             </div>
             <br/>

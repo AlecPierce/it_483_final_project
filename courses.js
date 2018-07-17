@@ -1,71 +1,96 @@
-var courseArray = [];
-
-createNewDiv(5, courseArray);
-
-var divUponEnterHidden = false;
-
-function createNewDiv(i, courseArray) {
-  // Container div
-  div = document.createElement('div');
-  div.setAttribute("id", "courseLink" + i);
-  div.setAttribute("class", "course");
-  div.setAttribute("hidden", "false");
-
-  // Setting the text of the button
-  div.innerHTML += "Course " + i;
-
-  // TODO: Come up with unique onclicks
-  // TODO: Figure out a way to hide the newest div
-  $(div.click(function(courseArray){
-    if (courseArray.length > 0) { 
-        courseDiv = courseArray[courseArray.length - 1];
-      if (!divUponEnterHidden) {
-        $(document.getElementById("divUponEnter")).hide();
-        divUponEnterHidden = true;
-      }
-      if (courseDiv.getAttribute("hidden").equals(false)) {
-        document.getElementById(courseDiv.getAttribute("id")).hide();
-        courseArray[courseArray.length - 1].setAttribute("hidden", true);
-      }
-    }
-    // $(document.getElementByClass("course")).hide();
-    createTopHalfCourseDiv();
-  });
-
-  document.getElementById("courseLinks").appendChild(div);
-}
-
-function createTopHalfCourseDiv() {
-  // Container div
-  div = document.createElement('div');
-  div.setAttribute("id", "top-half-div");
-  div.innerHTML += "divOnClick";
-  courseArray.push(div);
-  document.getElementById("top-half").appendChild(div);
-}
-
 var courses = [];
-var courseID = "\"IT210\"";
-var mysql = require('mysql');
-var query = "SELECT * FROM Courses WHERE COURSE_ID LIKE " + courseID;
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "it_483_project"
-});
-
-con.connect(function(err, courseID) {
-  if (err) {
-    throw err;
-  }
-  con.query(query, function (err, result, fields) {
-    if (err) {
-      throw err;
-    } else {
-      courses = result;
-      console.log(result);
-    }
+var idMap = new Map();
+$( document ).ready(function() {
+  $.ajax({
+        url: "db_courses.txt",
+        success: function(result) {
+          courses = JSON.parse(result);
+          console.log("Successfully grabbed db_courses Content");
+          createBottomHalfContent(courses);
+        },
+        error: function() {
+          console.log('An error occurred');
+        }
+  });
+  $('.courseLink').on("click", function(event) {
+    console.log("Click was accepted");
+    var courseId = $(event.target).attr('id');
+    $.ajax({
+        url: "db_courses.txt",
+        success: function(result) {
+          courses = JSON.parse(result);
+          console.log("Successfully grabbed db_courses Content");
+        },
+        error: function() {
+          console.log('An error occurred');
+        }
+    });
+    deleteTopHalfCourseDiv();
+    createTopHalfCourseDiv(courses, courseId);
   });
 });
+
+  function createBottomHalfContent(courses) {
+    var index = 0;
+    courses.forEach(function(course) {
+      idMap.set(course.COURSE_ID, index.toString());
+      createNewDiv(course);
+      index++;
+    });
+  }
+
+  function createNewDiv(course) {
+    // Container div
+    div = document.createElement('div');
+    div.setAttribute("id", course.COURSE_ID);
+
+    // Setting the text of the button
+    div.innerHTML += course.COURSE_ID;
+
+    document.getElementById("courseLinks").appendChild(div);
+  }
+
+  function createTopHalfCourseDiv(courses, courseId) {
+    var course = courses[idMap.get(courseId)];
+
+    // Container div
+    newDiv = document.createElement('div');
+    newDiv.setAttribute("id", "top-half-div");
+
+    document.getElementById("top-half").appendChild(newDiv);
+    createCourseHTML(course);
+  }
+
+  function createCourseHTML(course) {
+    var courseIdDiv = document.createElement('div');
+    var courseTitleDiv = document.createElement('div');
+    var courseOfferingsDiv = document.createElement('div');
+    var courseDescDiv = document.createElement('div');
+    var coursePrereqDiv = document.createElement('div');
+    var courseCreditsDiv = document.createElement('div');
+    var courseIdInfo = course.COURSE_ID;
+    var courseDescInfo = course.COURSE_DESC;
+    var coursePrereqInfo = course.COURSE_PREREQ;
+    var courseOfferingsInfo = course.COURSE_OFFERINGS;
+    var courseCreditsInfo = course.COURSE_CREDITS;
+    var courseTitleInfo = course.COURSE_TITLE;
+
+    var courseInfoDivs = [courseIdDiv, courseDescDiv, coursePrereqDiv,
+                      courseOfferingsDiv, courseCreditsDiv, courseTitleDiv];
+
+    var courseInfo = [courseIdInfo, courseDescInfo, coursePrereqInfo,
+                      courseOfferingsInfo,  courseCreditsInfo,  courseTitleInfo]
+
+    for (i in courseInfoDivs) {
+      var childDiv = courseInfoDivs[i];
+      childDiv.setAttribute("id", "topHalfDivChild" + courseInfo.indexOf(childDiv));
+      childDiv.innerHTML += courseInfo[i];
+      document.getElementById("top-half-div").appendChild(childDiv);
+    }
+  }
+
+  function deleteTopHalfCourseDiv() {
+    // Removes the current "top-half-div"
+    var oldDiv = document.getElementById("top-half-div");
+    document.getElementById("top-half").removeChild(oldDiv);
+  }
