@@ -13,22 +13,22 @@ con.connect(function(err) {
   if (err) {
     throw err;
   }
-  con.query("SELECT * FROM Courses", function (err, result) {
+  con.query("SELECT * FROM news", function (err, result) {
     if (err) {
       throw err;
     } else {
-	  courses = JSON.stringify(result);
-	  console.log(courses);
-	  console.log('Writing to db_courses.txt');
-	  var file = writer.createWriteStream('db_courses.txt');
+	  faculty = JSON.stringify(result);
+	  console.log(faculty);
+	  console.log('Writing to db_news.txt');
+	  var file = writer.createWriteStream('db_news.txt');
 	  file.on('error', function(err) {
 		if (err) {
 			return console.log(err);
 		}
 	  });
-	  file.write(courses);
+	  file.write(faculty);
 	  file.end();
-	  console.log('Written to db_courses.txt');
+    console.log('Written to db_news.txt');
     }
   });
 });

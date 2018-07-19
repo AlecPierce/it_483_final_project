@@ -6,7 +6,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "it_483_project"
+  database: "final_project_db"
 });
 
 con.connect(function(err) {

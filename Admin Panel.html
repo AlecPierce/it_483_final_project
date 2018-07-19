@@ -1,67 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Admin Panel</title>
-	<link rel="stylesheet" type="text/css" href="adminPanel.css">
-    <!--<link rel="stylesheet" type="text/css" href="bootstrap.css">-->
-</head>
-<body>
-	<div class="flex-container">
-		<div>
-			<form action="insert_faculty.php" method="post">
-				<div>
-					<label>Faculty Name</label>
-					<input type="text" name="new_faculty_name">
+	<head>
+		<title>Admin Panel</title>
+		<link rel="stylesheet" type="text/css" href="adminPanel.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="flex-container">
+			<div id="inputPanel">
+				<div id="optionSelector">
+					<div>Please Select an Action</div>
+					<select id="optionList" class="crudOption" onchange="prepareForm()">
+						<option id="defaultOption">No action selected</option>
+						<option id="addFaculty">Add Faculty</option>
+						<option id="updateFaculty">Update Faculty</option>
+						<option id="deleteFaculty">Delete Faculty</option>
+						<option id="addCourse">Add Course</option>
+						<option id="updateCourse">Update Course</option>
+						<option id="deleteCourse">Delete Course</option>
+						<option id="addNews">Add News Article</option>
+						<option id="updateNews">Update News Article</option>
+						<option id="deleteNews">Delete News Article</option>
+					</select>
 				</div>
-				<div>
-					<label>Faculty ID</label>
-					<input type="text" name="new_faculty_id">
+				<div id="crudForm" class="formDiv">
+				<!-- CREATE form based on selection-->
 				</div>
-				<div>
-					<label>Email</label>
-					<input type="text" name="new_faculty_id">
-				</div>
-				<div>
-					<label>Degree</label>
-					<input type="text" name="new_faculty_degree">
-				</div>
-				<div>
-					<label>Interest</label>
-					<input type="text" name="new_faculty_interest">
-				</div>
-				<div>
-					<label>Office Location (Building)</label>
-					<input type="text" name="new_faculty_off_building">
-				</div>
-				<div>
-					<label>Office Location (Number)</label>
-					<input type="text" name="new_faculty_off_number">
-				</div>
-				<div>
-					<label>Phone Number</label>
-					<input type="text" name="new_faculty_phone">
-				</div>
-				<div>
-					<label>Title</label>
-					<input type="text" name="new_faculty_title">
-				</div>
-				<div>
-					<label>Other Information</label>
-					<input type="text" name="new_faculty_desc">
-				</div>
-				<div>
-					<button type="Submit">Submit</button>
-				</div>
-			</form>
+			</div>
 		</div>
-
-		<div>
-			<form action="insert_image.php" method="post">
-				<label>Image</label>
-				<input type="Image" name="Image">
-				<button type="Submit">Submit</button>
-			</form>
-		</div>
-	</div>
-</body>
+	</body>
+	<script src="adminPanel.js"></script>
 </html>

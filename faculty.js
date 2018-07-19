@@ -33,7 +33,7 @@ $( document ).ready(function() {
   function createBottomHalfContent(faculty) {
     var index = 0;
     faculty.forEach(function(facultyMember) {
-      idMap.set(facultyMember.FACULTY_NAME, index.toString());
+      idMap.set(facultyMember.FACULTY_ID.toString(), index.toString());
       createNewDiv(facultyMember);
       index++;
     });
@@ -49,63 +49,43 @@ $( document ).ready(function() {
 
     document.getElementById("facultyLinks").appendChild(div);
     var img = document.createElement('img');
-    img.setAttribute("id", facultyMember.FACULTY_NAME + facultyMember.FACULTY_ID);
-    img.setAttribute("src", "facultyMember.IMAGE_PATH");
+    img.setAttribute("id", facultyMember.FACULTY_ID);
+    img.setAttribute("src", facultyMember.IMAGE_PATH);
+    img.setAttribute("height", "250px");
+    img.setAttribute("width", "250px");
     document.getElementById(facultyMember.FACULTY_ID).appendChild(img);
   }
 
   function createTopHalfCourseDiv(faculty, facultyId) {
-    var facultyMember = faculty[idMap.get(facultyId)];
-
     // Container div
     newDiv = document.createElement('div');
     newDiv.setAttribute("id", "top-half-div");
 
     document.getElementById("top-half").appendChild(newDiv);
-    createFacultyHTML(facultyMember);
+    createFacultyHTML(faculty, facultyId);
   }
 
-  function createFacultyHTML(facultyMember) {
+  function createFacultyHTML(faculty, facultyId) {
+    var facultyMember = faculty[idMap.get(facultyId)];
     var facultyImageDiv = document.createElement('div');
     var facultyImgElement = document.createElement('img');
     var facultyImageDivId = "facultyImgId";   
     var facultyImage = facultyMember.IMAGE_PATH;
     facultyImageDiv.setAttribute("id", facultyImageDivId);
     facultyImgElement.setAttribute("src", facultyImage);
+    facultyImgElement.setAttribute("height", "250px");
+    facultyImgElement.setAttribute("width", "250px");
     document.getElementById("top-half-div").appendChild(facultyImageDiv);
     document.getElementById(facultyImageDivId).appendChild(facultyImgElement);
 
-    var facultyNameDiv = document.createElement('div');
-    var facultyDescDiv = document.createElement('div');
-    var facultyInterestDiv = document.createElement('div');
-    var facultyOfficeBuildingDiv = document.createElement('div');
-    var facultyOfficeNumDiv = document.createElement('div');
-    var facultyDegreeDiv = document.createElement('div');
-    var facultyTitleDiv = document.createElement('div');
-    var facultyEmailDiv = document.createElement('div');
-    var facultyPhoneNumDiv = document.createElement('div');
+    var facultyInfo = [facultyMember.FACULTY_NAME, facultyMember.FACULTY_DESC,
+                      facultyMember.FACULTY_INTEREST, facultyMember.FACULTY_OFFICE_LOC, 
+                      facultyMember.FACULTY_DEGREE, facultyMember.FACULTY_TITLE, 
+                      facultyMember.FACULTY_EMAIL, facultyMember.FACULTY_PHONE_NUM];
 
-    var facultyName = facultyMember.FACULTY_NAME;
-    var facultyDesc = facultyMember.FACULTY_DESC;
-    var facultyInterest = facultyMember.FACULTY_INTEREST;
-    var facultyOfficeBuilding = facultyMember.FACULTY_OFFICE_BUILDING;
-    var facultyOfficeNum = facultyMember.FACULTY_OFFICE_NUMBER;
-    var facultyDegreeDiv = facultyMember.FACULTY_DEGREE;
-    var facultyTitleDiv = facultyMember.FACULTY_TITLE;
-    var facultyEmail = facultyMember.FACULTY_EMAIL
-    var facultyPhoneNum = facultyMember.FACULTY_PHONE_NUM;
-
-    var facultyDivs = [facultyNameDiv, facultyDescDiv,
-                      facultyInterestDiv, facultyOfficeBuildingDiv, facultyOfficeBuildingDiv,
-                      facultyOfficeNumDiv, facultyDegreeDiv, facultyTitleDiv, facultyEmailDiv, facultyPhoneNumDiv];
-
-    var facultyInfo = [facultyName, facultyDesc,
-                      facultyInterest, facultyOfficeBuilding, facultyOfficeBuilding,
-                      facultyOfficeNum, facultyDegree, facultyTitle, facultyEmail, facultyPhoneNum];
-
-    for (i in facultyDivs) {
-      var childDiv = facultyDivs[i];
-      childDiv.setAttribute("id", "topHalfDivChild" + facultyInfo.indexOf(childDiv));
+    for (i in facultyInfo) {
+      var childDiv = document.createElement('div');
+      childDiv.setAttribute("id", "topHalfDivChild" + i);
       childDiv.innerHTML += facultyInfo[i];
       document.getElementById("top-half-div").appendChild(childDiv);
     }

@@ -5,24 +5,22 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="main.css">
         <link rel="stylesheet" type="text/css" href="bootstrap.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
         <div id="top-half">
-            <div>
+            <div id="top-half-div">
                 <span>Please select a news article to learn more</span>
             </div>
         </div>
-        <div id="NavHistory">
-            <!-- This is where the home and possibly hierarchy history if there is any -->
-            <a href="index.html">
-                <button>Home</button>
-            </a>
-        </div>
         <div id="bottom-half">
-            <div class="flex-container">
-                <div>News Article 1</div>
-                <div>News Article 2</div>
-                <div>News Article 3</div>
+            <div id="NavHistory">
+                <!-- This is where the home and possibly hierarchy history if there is any -->
+                <a href="index.html">
+                    <button>Home</button>
+                </a>
+            </div>
+            <div id="newsLinks" class="flex-container newsLink">
                 <!-- News Articles go here -->
             </div>
             <div class="flex-container">
@@ -39,4 +37,5 @@
             <br/>
         </div>
     </body>
+    <script src="news.js"></script>
 </html>

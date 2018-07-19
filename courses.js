@@ -62,28 +62,12 @@ $( document ).ready(function() {
   }
 
   function createCourseHTML(course) {
-    var courseIdDiv = document.createElement('div');
-    var courseTitleDiv = document.createElement('div');
-    var courseOfferingsDiv = document.createElement('div');
-    var courseDescDiv = document.createElement('div');
-    var coursePrereqDiv = document.createElement('div');
-    var courseCreditsDiv = document.createElement('div');
-    var courseIdInfo = course.COURSE_ID;
-    var courseDescInfo = course.COURSE_DESC;
-    var coursePrereqInfo = course.COURSE_PREREQ;
-    var courseOfferingsInfo = course.COURSE_OFFERINGS;
-    var courseCreditsInfo = course.COURSE_CREDITS;
-    var courseTitleInfo = course.COURSE_TITLE;
+    var courseInfo = [course.COURSE_ID, course.COURSE_DESC, course.COURSE_PREREQ,
+                      course.COURSE_OFFER,  course.COURSE_CREDITS,  course.COURSE_TITLE]
 
-    var courseInfoDivs = [courseIdDiv, courseDescDiv, coursePrereqDiv,
-                      courseOfferingsDiv, courseCreditsDiv, courseTitleDiv];
-
-    var courseInfo = [courseIdInfo, courseDescInfo, coursePrereqInfo,
-                      courseOfferingsInfo,  courseCreditsInfo,  courseTitleInfo]
-
-    for (i in courseInfoDivs) {
-      var childDiv = courseInfoDivs[i];
-      childDiv.setAttribute("id", "topHalfDivChild" + courseInfo.indexOf(childDiv));
+    for (i in courseInfo) {
+      var childDiv = document.createElement('div');
+      childDiv.setAttribute("id", "topHalfDivChild" + i);
       childDiv.innerHTML += courseInfo[i];
       document.getElementById("top-half-div").appendChild(childDiv);
     }
