@@ -12,7 +12,7 @@ $phoneNum = $_POST["PhoneNumber"];
 $title = $_POST["Title"];
 $desc = $_POST["Description"];
 $location = $_POST["Location"];
-$image_field = $_POST["Image"];
+$image = $_POST["Image"];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -21,7 +21,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "INSERT INTO Faculty(\n"
+$sql = "INSERT INTO Faculty (\n"
 
     . "    FACULTY_DEGREE,\n"
 
@@ -41,11 +41,11 @@ $sql = "INSERT INTO Faculty(\n"
 
     . "    FACULTY_TITLE,\n"
 
-    . "    IMAGE_PATH\n"
+    . "    FACULTY_IMAGE\n"
 
     . ")\n"
 
-    . "VALUES(\n"
+    . "VALUES (\n"
 
     . "    \"".$degree."\",\n"
 
@@ -65,10 +65,10 @@ $sql = "INSERT INTO Faculty(\n"
 
     . "    \"".$title."\",\n"
 
-    . "		\"Pictures/".$image_field."\")";
+    . "		\"Pictures/".$image."\")";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New faculty record created successfully";
+    echo "New faculty record created.";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

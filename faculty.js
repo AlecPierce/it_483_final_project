@@ -50,7 +50,7 @@ $( document ).ready(function() {
     document.getElementById("facultyLinks").appendChild(div);
     var img = document.createElement('img');
     img.setAttribute("id", facultyMember.FACULTY_ID);
-    img.setAttribute("src", facultyMember.IMAGE_PATH);
+    img.setAttribute("src", facultyMember.FACULTY_IMAGE);
     img.setAttribute("height", "250px");
     img.setAttribute("width", "250px");
     document.getElementById(facultyMember.FACULTY_ID).appendChild(img);
@@ -70,7 +70,7 @@ $( document ).ready(function() {
     var facultyImageDiv = document.createElement('div');
     var facultyImgElement = document.createElement('img');
     var facultyImageDivId = "facultyImgId";   
-    var facultyImage = facultyMember.IMAGE_PATH;
+    var facultyImage = facultyMember.FACULTY_IMAGE;
     facultyImageDiv.setAttribute("id", facultyImageDivId);
     facultyImgElement.setAttribute("src", facultyImage);
     facultyImgElement.setAttribute("height", "250px");

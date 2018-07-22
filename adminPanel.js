@@ -28,11 +28,8 @@ var FormOps = {
 function createForm(selectedForm) {
 	var form = document.createElement("form");
 	form.setAttribute("id", "inputForm");
-	//form.setAttribute("action", selectedForm+".js");
 	form.setAttribute("action", selectedForm + ".php");
-	//form.setAttribute("action", "http://127.0.0.1:8086/" + selectedForm);
 	form.setAttribute("method", "post");
-	//form.setAttribute("action", "/"+selectedForm);
 	document.getElementById("crudForm").appendChild(form);
 	if (selectedForm == FormOps.addFaculty || selectedForm == FormOps.updateFaculty
 		|| selectedForm == FormOps.deleteFaculty) {
@@ -58,42 +55,42 @@ var Faculty = {
 };
 
 var FacultyUpdate = {
-	fName: "Faculty Name",
-	fID: "Faculty ID",
-	fEmail: "Faculty Email",
-	fDeg: "Faculty Degree",
-	fInt: "Faculty Interest",
-	fOffLoc: "Faculty Office Location",
-	fNum: "Faculty Phone Number",
-	fTitle: "Faculty Title",
-	fDesc: "Faculty Description"
+	fName: "Name",
+	fID: "ID",
+	fEmail: "Email",
+	fDeg: "Degree",
+	fInt: "Interest",
+	fOffLoc: "Office Location",
+	fNum: "Phone Number",
+	fTitle: "Title",
+	fDesc: "Description"
 };
 
 var FacultyDelete = {
-	fNameDel: "Faculty Name",
-	fIdDel: "Faculty ID"
+	fNameDel: "Name"
 };
 
 var Course = {
-	cTitle: "Course Title",
-	cDesc: "Course Description",
-	cPre: "Course Prerequisite",
-	cCred: "Course Credits",
-	cOffer: "Course Offerings"
+	cId: "ID",
+	cTitle: "Title",
+	cDesc: "Description",
+	cPre: "Prerequisite",
+	cCred: "Credits",
+	cOffer: "Offerings"
 };
 
 var CourseDelete = {
-	cDelTitle: "Course Title"
+	cDelId: "ID"
 };
 
 var News = {
-	nTitle: "News Title",
-	nText: "News Text",
-	nArticle: "News Article Link"
+	nTitle: "Title",
+	nText: "Text",
+	nLink: "Link"
 };
 
 var NewsDelete = {
-	nDelTitle: "News Title"
+	nDelTitle: "Title"
 };
 
 var image = "Image";
