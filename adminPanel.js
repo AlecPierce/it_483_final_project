@@ -28,8 +28,11 @@ var FormOps = {
 function createForm(selectedForm) {
 	var form = document.createElement("form");
 	form.setAttribute("id", "inputForm");
-	form.setAttribute("action", selectedForm+".js");
-	form.setAttribute("method", "POST");
+	//form.setAttribute("action", selectedForm+".js");
+	form.setAttribute("action", selectedForm + ".php");
+	//form.setAttribute("action", "http://127.0.0.1:8086/" + selectedForm);
+	form.setAttribute("method", "post");
+	//form.setAttribute("action", "/"+selectedForm);
 	document.getElementById("crudForm").appendChild(form);
 	if (selectedForm == FormOps.addFaculty || selectedForm == FormOps.updateFaculty
 		|| selectedForm == FormOps.deleteFaculty) {
@@ -44,6 +47,17 @@ function createForm(selectedForm) {
 }
 
 var Faculty = {
+	fName: "Name",
+	fEmail: "Email",
+	fDeg: "Degree",
+	fInt: "Interest",
+	fOffLoc: "Location",
+	fNum: "PhoneNumber",
+	fTitle: "Title",
+	fDesc: "Description"
+};
+
+var FacultyUpdate = {
 	fName: "Faculty Name",
 	fID: "Faculty ID",
 	fEmail: "Faculty Email",
@@ -82,7 +96,7 @@ var NewsDelete = {
 	nDelTitle: "News Title"
 };
 
-var image = "Faculty Image";
+var image = "Image";
 
 function createFacultyForm(form, selectedForm) {
 	if (selectedForm == FormOps.deleteFaculty) {
@@ -96,7 +110,7 @@ function createFacultyForm(form, selectedForm) {
 		document.getElementById(form.id).appendChild(childDiv);
 		var imageInputElem = document.createElement('input');
 		imageInputElem.setAttribute("type", "file");
-		imageInputElem.setAttribute("name", "New" + image);
+		imageInputElem.setAttribute("name", image);
 		imageInputElem.setAttribute("placeholder", image);
 		document.getElementById(image+"Div").appendChild(imageInputElem);
 		appendSubmitButton(form);
@@ -131,7 +145,7 @@ function appendChildDivs(jsonObject, form) {
 		document.getElementById(form.id).appendChild(childDiv);
 		var inputElem = document.createElement('input');
 		inputElem.setAttribute("type", "text");
-		inputElem.setAttribute("name", "New" + inputField);
+		inputElem.setAttribute("name", inputField);
 		inputElem.setAttribute("placeholder", inputField);
 		document.getElementById(inputField+"Div").appendChild(inputElem);
 	}

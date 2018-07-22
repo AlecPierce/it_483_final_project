@@ -1,6 +1,5 @@
 var mysql = require('mysql');
 var writer = require('fs');
-var courses = [];
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -17,8 +16,8 @@ con.connect(function(err) {
     if (err) {
       throw err;
     } else {
-	  faculty = JSON.stringify(result);
-	  console.log(faculty);
+	  var news = JSON.stringify(result);
+	  console.log(news);
 	  console.log('Writing to db_news.txt');
 	  var file = writer.createWriteStream('db_news.txt');
 	  file.on('error', function(err) {
@@ -26,7 +25,7 @@ con.connect(function(err) {
 			return console.log(err);
 		}
 	  });
-	  file.write(faculty);
+	  file.write(news);
 	  file.end();
     console.log('Written to db_news.txt');
     }

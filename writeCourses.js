@@ -1,6 +1,5 @@
 var mysql = require('mysql');
 var writer = require('fs');
-var courses = [];
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -17,7 +16,7 @@ con.connect(function(err) {
     if (err) {
       throw err;
     } else {
-	  courses = JSON.stringify(result);
+	  var courses = JSON.stringify(result);
 	  console.log(courses);
 	  console.log('Writing to db_courses.txt');
 	  var file = writer.createWriteStream('db_courses.txt');
