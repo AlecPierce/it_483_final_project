@@ -8,10 +8,11 @@ $name = $_POST["Name"];
 $degree = $_POST["Degree"];
 $email = $_POST["Email"];
 $interest = $_POST["Interest"];
-$phoneNum = $_POST["PhoneNumber"];
+$phoneNum = $_POST["Phone"];
 $title = $_POST["Title"];
 $desc = $_POST["Description"];
-$location = $_POST["Location"];
+$location = $_POST["Office"];
+$link = $_POST["Link"];
 $image = $_POST["Image"];
 
 // Create connection
@@ -76,6 +77,13 @@ if (empty($name)) {
     if (empty($location) != TRUE) {
         array_push($field_array, $location);
         array_push($column_array, "FACULTY_OFFICE_LOC");
+        array_push($type_array, "STRING");
+        $update_possible = TRUE;
+    }
+
+    if (empty($link) != TRUE) {
+        array_push($field_array, $link);
+        array_push($column_array, "FACULTY_LINK");
         array_push($type_array, "STRING");
         $update_possible = TRUE;
     }

@@ -48,10 +48,11 @@ var Faculty = {
 	fEmail: "Email",
 	fDeg: "Degree",
 	fInt: "Interest",
-	fOffLoc: "Location",
-	fNum: "PhoneNumber",
+	fOffLoc: "Office",
+	fNum: "Phone",
 	fTitle: "Title",
-	fDesc: "Description"
+	fDesc: "Description",
+	fLink: "Link"
 };
 
 var FacultyUpdate = {
@@ -60,10 +61,11 @@ var FacultyUpdate = {
 	fEmail: "Email",
 	fDeg: "Degree",
 	fInt: "Interest",
-	fOffLoc: "Office Location",
-	fNum: "Phone Number",
+	fOffLoc: "Office",
+	fNum: "Phone",
 	fTitle: "Title",
-	fDesc: "Description"
+	fDesc: "Description",
+	fLink: "Link"
 };
 
 var FacultyDelete = {
@@ -103,7 +105,7 @@ function createFacultyForm(form, selectedForm) {
 		appendChildDivs(Faculty, form);
 		var childDiv = document.createElement('div');
 		childDiv.setAttribute("id", image+"Div");
-		childDiv.innerHTML += "<br/>Image Related to Faculty";
+		childDiv.innerHTML += "<br/>Image Related to Faculty<br/><br/>";
 		document.getElementById(form.id).appendChild(childDiv);
 		var imageInputElem = document.createElement('input');
 		imageInputElem.setAttribute("type", "file");
@@ -156,6 +158,7 @@ function appendSubmitButton(form) {
 	var submitButton = document.createElement('button');
 	submitButton.setAttribute('id', "submitToMe");
 	submitButton.setAttribute('type', "Submit");
-	submitButton.innerHTML += "Submit To Me!";
+	submitButton.innerHTML += "Submit";
+	document.getElementById(submitDivId).appendChild(document.createElement('br'));
 	document.getElementById(submitDivId).appendChild(submitButton);
 }

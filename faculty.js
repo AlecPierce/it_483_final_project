@@ -5,7 +5,6 @@ $( document ).ready(function() {
         url: "db_faculty.txt",
         success: function(result) {
           faculty = JSON.parse(result);
-          console.log("Successfully grabbed db_faculty Content");
           createBottomHalfContent(faculty);
         },
         error: function() {
@@ -13,13 +12,11 @@ $( document ).ready(function() {
         }
   });
   $('.facultyLink').on("click", function(event) {
-    console.log("Click was accepted");
     var facultyId = $(event.target).attr('id');
     $.ajax({
         url: "db_faculty.txt",
         success: function(result) {
           faculty = JSON.parse(result);
-          console.log("Successfully grabbed db_faculty Content");
         },
         error: function() {
           console.log('An error occurred');
@@ -43,23 +40,33 @@ $( document ).ready(function() {
     // Container div
     var div = document.createElement('div');
     div.setAttribute("id", facultyMember.FACULTY_ID);
+    div.setAttribute("class", "facultyMemberDiv");
 
     // Setting the text of the button
-    div.innerHTML += facultyMember.FACULTY_NAME;
+    var textDiv = document.createElement('div');
+    textDiv.innerHTML += facultyMember.FACULTY_NAME;
 
     document.getElementById("facultyLinks").appendChild(div);
+
     var img = document.createElement('img');
     img.setAttribute("id", facultyMember.FACULTY_ID);
     img.setAttribute("src", facultyMember.FACULTY_IMAGE);
-    img.setAttribute("height", "250px");
-    img.setAttribute("width", "250px");
+    img.setAttribute("class", "facultyImg");
+    document.getElementById(facultyMember.FACULTY_ID).appendChild(textDiv);
     document.getElementById(facultyMember.FACULTY_ID).appendChild(img);
+
+    var facultyLinkElement = document.createElement('a');  
+    var facultyLink = facultyMember.FACULTY_LINK;
+    facultyLinkElement.setAttribute("href", facultyLink);
+    facultyLinkElement.innerHTML += "<br/>Link to their work";
+    document.getElementById(facultyMember.FACULTY_ID).appendChild(facultyLinkElement);
   }
 
   function createTopHalfCourseDiv(faculty, facultyId) {
     // Container div
     newDiv = document.createElement('div');
     newDiv.setAttribute("id", "top-half-div");
+    newDiv.setAttribute("class", "topHalfDiv");
 
     document.getElementById("top-half").appendChild(newDiv);
     createFacultyHTML(faculty, facultyId);
@@ -72,9 +79,8 @@ $( document ).ready(function() {
     var facultyImageDivId = "facultyImgId";   
     var facultyImage = facultyMember.FACULTY_IMAGE;
     facultyImageDiv.setAttribute("id", facultyImageDivId);
+    facultyImageDiv.setAttribute("class", "imgContainer");
     facultyImgElement.setAttribute("src", facultyImage);
-    facultyImgElement.setAttribute("height", "250px");
-    facultyImgElement.setAttribute("width", "250px");
     document.getElementById("top-half-div").appendChild(facultyImageDiv);
     document.getElementById(facultyImageDivId).appendChild(facultyImgElement);
 
@@ -83,11 +89,15 @@ $( document ).ready(function() {
                       facultyMember.FACULTY_DEGREE, facultyMember.FACULTY_TITLE, 
                       facultyMember.FACULTY_EMAIL, facultyMember.FACULTY_PHONE_NUM];
 
+    var parentDiv = document.createElement('div');
+    parentDiv.setAttribute("id", "topHalfDivParent");
+    document.getElementById("top-half-div").appendChild(parentDiv);
+
     for (i in facultyInfo) {
       var childDiv = document.createElement('div');
       childDiv.setAttribute("id", "topHalfDivChild" + i);
       childDiv.innerHTML += facultyInfo[i];
-      document.getElementById("top-half-div").appendChild(childDiv);
+      document.getElementById("topHalfDivParent").appendChild(childDiv);
     }
   }
 

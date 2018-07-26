@@ -8,10 +8,11 @@ $name = $_POST["Name"];
 $email = $_POST["Email"];
 $degree = $_POST["Degree"];
 $interest = $_POST["Interest"];
-$phoneNum = $_POST["PhoneNumber"];
+$phoneNum = $_POST["Phone"];
 $title = $_POST["Title"];
 $desc = $_POST["Description"];
-$location = $_POST["Location"];
+$location = $_POST["Office"];
+$link = $_POST["Link"];
 $image = $_POST["Image"];
 
 // Create connection
@@ -41,6 +42,8 @@ $sql = "INSERT INTO Faculty (\n"
 
     . "    FACULTY_TITLE,\n"
 
+    . "    FACULTY_LINK,\n"
+
     . "    FACULTY_IMAGE\n"
 
     . ")\n"
@@ -64,6 +67,8 @@ $sql = "INSERT INTO Faculty (\n"
     . "    \"".$phoneNum."\",\n"
 
     . "    \"".$title."\",\n"
+
+    . "    \"".$link."\",\n"
 
     . "		\"Pictures/".$image."\")";
 

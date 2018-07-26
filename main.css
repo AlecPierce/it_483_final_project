@@ -1,11 +1,24 @@
 #top-half {
-    padding-left: 25%;
-    height: 45%;
+    padding-left: 30%;
+    height: 50%;
     border-style: double;
 }
 
+.topHalfDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.topHalfDiv > div {
+    margin: 10px;
+    line-height: 100%;
+    font-size: 125%;
+    align-content: center;
+    margin-top: 10px;
+}
+
 #bottom-half {
-    height: 45%;
+    height: 50%;
     border-style: double;
 }
 
@@ -13,25 +26,82 @@
     border-style: double;
     padding: 10%;
     width: 100%;
+    background-color: #222222;
 }
 
 .flex-container {
   display: flex;
-/*    flex-direction: row;*/
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: center;
+  background-color: #222222;
 }
 
 .flex-container > div {
-  background-color: #333;
-  width: 25%;
+  background-color: #222222;
+  width: 20%;
   height: 75%;
   margin: 10px;
   text-align: center;
-  line-height: 75%;
-  font-size: 30px;
+  line-height: 100%;
+  font-size: 125%;
 }
 
 #table table-striped {
     .table-striped;
 }
+
+#table {
+  width: 25%;
+}
+
+#facultyLinks {
+  flex-wrap: nowrap;
+}
+
+.facultyMemberDiv {
+  align-content: center;
+}
+
+.imgContainer {
+  width: 150px;
+}
+
+.imgContainer img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.facultyImg {
+  width: 150px;
+  margin: 10px;
+}
+
+.facultyImg img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#courseLinks {
+  overflow-x: scroll:auto;
+}
+
+#newsLinks {
+  overflow-x: scroll:auto;
+}
+
+.newsLink > div {
+  font-size: 20px;
+  line-height: 100%;
+}
+
+.navDiv {
+  justify-content: center;
+}
+
+.scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; }

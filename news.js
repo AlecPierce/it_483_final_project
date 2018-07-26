@@ -5,7 +5,6 @@ $( document ).ready(function() {
         url: "db_news.txt",
         success: function(result) {
           news = JSON.parse(result);
-          console.log("Successfully grabbed db_news Content");
           createBottomHalfContent(news);
         },
         error: function() {
@@ -13,13 +12,11 @@ $( document ).ready(function() {
         }
   });
   $('.newsLink').on("click", function(event) {
-    console.log("Click was accepted");
     var newsId = $(event.target).attr('id');
     $.ajax({
         url: "db_news.txt",
         success: function(result) {
           news = JSON.parse(result);
-          console.log("Successfully grabbed db_news Content");
         },
         error: function() {
           console.log('An error occurred');
@@ -44,10 +41,17 @@ $( document ).ready(function() {
     var div = document.createElement('div');
     div.setAttribute("id", newsArticle.NEWS_ID);
 
+
     // Setting the text of the button
     div.innerHTML += newsArticle.NEWS_TITLE;
 
     document.getElementById("newsLinks").appendChild(div);
+
+    var newsLinkElement = document.createElement('a');  
+    var newsLink = newsArticle.NEWS_LINK;
+    newsLinkElement.setAttribute("href", newsLink);
+    newsLinkElement.innerHTML += "<br/>Link to Article";
+    document.getElementById(newsArticle.NEWS_ID).appendChild(newsLinkElement);
   }
 
   function createTopHalfCourseDiv(news, newsId) {
@@ -73,16 +77,6 @@ $( document ).ready(function() {
       childDiv.innerHTML += newsInfo[i];
       document.getElementById("top-half-div").appendChild(childDiv);
     }
-
-    var newsLinkDiv = document.createElement('div');
-    var newsLinkElement = document.createElement('a');
-    var newsLinkDivId = "newsLinkId";   
-    var newsLink = newsArticle.NEWS_LINK;
-    newsLinkDiv.setAttribute("id", newsLinkDivId);
-    newsLinkElement.setAttribute("href", newsLink);
-    newsLinkElement.innerHTML += "Link to Article";
-    document.getElementById("top-half-div").appendChild(newsLinkDiv);
-    document.getElementById(newsLinkDivId).appendChild(newsLinkElement);
   }
 
   function deleteTopHalfCourseDiv() {
